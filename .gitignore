@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+productivity_hub_env/
+venv/
+ENV/
+env/
+.env
+
+# VS Code
+.vscode/
+*.code-workspace
+.history/
+
+# PostgreSQL
+*.dump
+*.sql.backup
+*.backup
+
+# Local Development
+instance/
+.webassets-cache
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS specific
+.DS_Store
+Thumbs.db
