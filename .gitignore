@@ -49,3 +49,6 @@ instance/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# Project Notes
+Project Notes.txt
