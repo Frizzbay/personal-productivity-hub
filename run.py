@@ -1,3 +1,10 @@
+"""
+
+Personal Productivity Hub
+Main application runner
+
+"""
+
 from app import create_app
 
 app = create_app()

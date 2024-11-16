@@ -1,3 +1,5 @@
+# Configuration for Personal Productivity Hub
+
 import os
 
 

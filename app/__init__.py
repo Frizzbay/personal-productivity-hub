@@ -4,6 +4,12 @@ from config import Config
 
 db = SQLAlchemy()
 
+"""
+
+Personal Productivity Hub
+Core application initialization
+
+"""
 
 def create_app():
     app = Flask(__name__)
