@@ -1,0 +1,9 @@
+psql --username wdcdo personal_productivity_hub
+
+Project Organization Explanation:
+/sql
+  /migrations/    <- Schema changes and initial data (stuff that builds your database)
+  /queries/       <- Reusable SELECT statements (for viewing/analyzing data)
+  /functions/     <- PostgreSQL functions
+  /views/         <- PostgreSQL views
+  /procedures/    <- PostgreSQL stored procedures
