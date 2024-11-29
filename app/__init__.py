@@ -18,5 +18,7 @@ def create_app():
     db.init_app(app)
 
     from app import routes
+    
+    routes.init_app(app)
 
     return app

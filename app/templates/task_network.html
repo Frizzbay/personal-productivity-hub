@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Dependencies</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
+</head>
+<body>
+    <div class="mermaid">
+        graph LR
+        {% for dep in dependencies %}
+            {{ dep.prerequisite_task_title|replace(" ", "_") }}["{{ dep.prerequisite_task_title }}"] --> {{ dep.dependent_task_title|replace(" ", "_") }}["{{ dep.dependent_task_title }}"]
+        {% endfor %}
+    </div>
