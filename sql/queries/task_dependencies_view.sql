@@ -20,3 +20,4 @@ SELECT
 FROM task_dependencies td
 JOIN tasks t1 ON td.dependent_task_id = t1.task_id
 JOIN tasks t2 ON td.prerequisite_task_id = t2.task_id;
+

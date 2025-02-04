@@ -11,7 +11,7 @@ def init_app(app):
     @app.route('/task-network')
     def task_network():
         # Connect to your database
-        conn = psycopg2.connect('postgresql://wdcdo:1337@localhost:5432/personal_productivity_hub')
+        conn = psycopg2.connect(current_app.config['DATABASE_URL'])
         cur = conn.cursor(cursor_factory=RealDictCursor)
         
         # Use our existing query to get task dependencies
