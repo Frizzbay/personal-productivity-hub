@@ -1,0 +1,43 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+productivity_hub_env/
+venv/
+ENV/
+env/
+.env
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+*.code-workspace
+.history/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Database dumps
+*.dump
+*.sql.backup
+*.backup
+
+# Development
+instance/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project notes
+Project Notes.txt
+README.md

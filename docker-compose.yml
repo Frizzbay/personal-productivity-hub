@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:15
+    container_name: productivity_hub_db
+    environment:
+      # Database credentials (matches your config.py)
+      POSTGRES_USER: wdcdo
+      POSTGRES_PASSWORD: 1337
+      POSTGRES_DB: personal_productivity_hub
+    ports:
+      # Map container port 5432 to host port 5432
+      - "5432:5432"
+    volumes:
+      # Persist database data (survives container restarts)
+      - postgres_data:/var/lib/postgresql/data
+      # Mount SQL files for easy initialization
+      - ./sql/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      # Check if database is ready
+      test: ["CMD-SHELL", "pg_isready -U wdcdo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Flask Application Service
+  web:
+    build: .
+    container_name: productivity_hub_web
+    environment:
+      # Tell Flask app how to connect to database
+      DATABASE_URL: postgresql://wdcdo:1337@db:5432/personal_productivity_hub
+      FLASK_APP: run.py
+      FLASK_ENV: development
+    ports:
+      # Map container port 5000 to host port 5000
+      - "5000:5000"
+    volumes:
+      # Mount code for development (changes reflect immediately)
+      - .:/app
+    depends_on:
+      db:
+        condition: service_healthy
+    command: python run.py
+
+# Named volume for database persistence
+volumes:
+  postgres_data:
