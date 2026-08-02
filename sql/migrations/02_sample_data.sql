@@ -71,5 +71,5 @@ INSERT INTO tasks (
 INSERT INTO task_dependencies (dependent_task_id, prerequisite_task_id) VALUES
     (
         (SELECT task_id FROM tasks WHERE title = 'Code Review Process'),
-        (SELECT task_id FROM tasks WHERE name = 'Learn PostgreSQL Basics')
+        (SELECT task_id FROM tasks WHERE title = 'Learn PostgreSQL Basics')
     );
