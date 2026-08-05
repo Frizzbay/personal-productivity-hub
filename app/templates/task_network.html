@@ -2,98 +2,40 @@
 <html>
 <head>
     <title>Task Dependencies</title>
-    <meta name="Viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.6.1/mermaid.min.js"></script>
-
     <style>
-
         body {
-            /* System font stack for clean, readable text */
             font-family: Arial, sans-serif;
-            /* Remove default margin */
             margin: 0;
-            /* Add some padding around the entire page */
             padding: 20px;
-            /* Light gray background for contrast */
             background-color: #f5f5f5;
         }
-
         .container {
-            /* Maximum width of container */
             max-width: 1200px;
-            /* Center the container */
             margin: 0 auto;
-            /* White background for content area */
             background-color: white;
-            /* Spacing inside the container */
             padding: 20px;
-            /* Rounded corners */
             border-radius: 8px;
-            /* Subtle shadow for depth - rgba(red, green, blue, opacity) */
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-            /* Style for the diagram container */
         .mermaid {
-            /* Center the diagram */
             display: flex;
             justify-content: center;
-            align-items: center;
-            /* Add space around the diagram */
             margin: 20px;
-            /* Allow horizontal scrolling if diagram is wide */
             overflow: auto;
         }
-
     </style>
 </head>
 <body>
     <div class="container">
-
         <h1>Task Dependencies</h1>
-
         <div class="mermaid">
-
-            <!-- Define graph direction left-to-right -->
-            graph LR
-            
-            <!-- Define color classes for each task status -->
-            %% Define colors for each status
-            classDef not_started fill:#FFE4E1   /* Light red background for not started tasks */
-            classDef in_progress fill:#E6E6FA    /* Lavender background for in-progress tasks */
-            classDef completed fill:#90EE90      /* Light green background for completed tasks */
-            classDef on_hold fill:#F0E68C        /* Light yellow background for on-hold tasks */
-
-            <!-- Iterate through each dependency relationship from database -->
-            {% for dep in dependencies %}
-            <!-- Create prerequisite task node with formatted ID and display title -->
-            {{ dep.prerequisite_task_title|replace(" ", "_") }}["{{ dep.prerequisite_task_title }}"]
-            <!-- Apply status-based styling to prerequisite task node -->
-            class {{ dep.prerequisite_task_title|replace(" ", "_") }} {{ dep.prerequisite_task_status }}
-
-            <!-- Create dependent task node with formatted ID and display title -->
-            {{ dep.dependent_task_title|replace(" ", "_") }}["{{ dep.dependent_task_title }}"]
-            <!-- Apply status-based styling to dependent task node -->
-            class {{ dep.dependent_task_title|replace(" ", "_") }} {{ dep.dependent_task_status }}
-            
-            <!-- Draw arrow from prerequisite to dependent task -->
-            {{ dep.prerequisite_task_title|replace(" ", "_")}} --> {{ dep.dependent_task_title|replace(" ", "_")}}
-            {% endfor %}
-
-            <!-- Create legend subgraph -->
-            %% Add Legend
-
-            subgraph Status Colors
-
-                <!-- Legend items showing each status with corresponding color -->
-                A["Not Started"]:::not_started    /* Example node with not_started style */
-                B["In Progress"]:::in_progress    /* Example node with in_progress style */
-                C["Completed"]:::completed        /* Example node with completed style */
-                D["On hold"]:::on_hold           /* Example node with on_hold style */
-            end
+graph LR
+{% for dep in dependencies %}
+    {{ dep.prerequisite_task_title|replace(" ", "_") }}["{{ dep.prerequisite_task_title }}"] --> {{ dep.dependent_task_title|replace(" ", "_") }}["{{ dep.dependent_task_title }}"]
+{% endfor %}
         </div>
     </div>
 </body>
-
 </html>
