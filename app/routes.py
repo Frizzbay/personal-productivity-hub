@@ -13,7 +13,7 @@ def init_app(app):
     def task_network():
         # Connect to your database
         # ← CHANGED THIS LINE - reads environment variable if it exists
-        db_url = os.environ.get('DATABASE_URL') or 'postgresql://wdcdo:1337@localhost:5432/personal_productivity_hub'
+        db_url = os.environ.get('DATABASE_URL')
         conn = psycopg2.connect(db_url)
         cur = conn.cursor(cursor_factory=RealDictCursor)
         
