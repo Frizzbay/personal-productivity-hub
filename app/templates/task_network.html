@@ -33,7 +33,15 @@
         <div class="mermaid">
 graph LR
 {% for dep in dependencies %}
-    {{ dep.prerequisite_task_title|replace(" ", "_") }}["{{ dep.prerequisite_task_title }}"] --> {{ dep.dependent_task_title|replace(" ", "_") }}["{{ dep.dependent_task_title }}"]
+    {{ dep.prerequisite_task_title|replace(" ", "_") }}["{{ dep.prerequisite_task_title }}"]
+    {% if dep.prerequisite_task_status == "completed" %}
+    style {{ dep.prerequisite_task_title|replace(" ", "_") }} fill:#90EE90
+    {% endif %}
+    {{ dep.dependent_task_title|replace(" ", "_") }}["{{ dep.dependent_task_title }}"]
+    {% if dep.dependent_task_status == "completed" %}
+    style {{ dep.dependent_task_title|replace(" ", "_") }} fill:#90EE90
+    {% endif %}
+    {{ dep.prerequisite_task_title|replace(" ", "_") }} --> {{ dep.dependent_task_title|replace(" ", "_") }}
 {% endfor %}
         </div>
     </div>
