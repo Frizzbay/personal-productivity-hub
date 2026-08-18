@@ -96,9 +96,7 @@ INSERT INTO tasks (
         (SELECT category_id FROM categories WHERE name = 'Design'),
         CURRENT_TIMESTAMP + INTERVAL '4 days',
         INTERVAL '6 hours'
-    )
-    
-ON CONFLICT (title) DO NOTHING;
+    );
 
 INSERT INTO task_tags (task_id, tag_id)
 SELECT tasks.task_id, tags.tag_id
